@@ -11,6 +11,8 @@ $router->setBaseURL('/' . $_ENV['APP_NAME']);
 
 $router->get('/', [AppController::class,'index']);
 $router->get('/mapa', [MapaController::class,'index']);
+$router->get('/API/buscar', [MapaController::class,'buscarAPI']);
 
 // Comprueba y valida las rutas, que existan y les asigna las funciones del Controlador
 $router->comprobarRutas();
+
