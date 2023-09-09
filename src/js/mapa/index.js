@@ -19,20 +19,20 @@ const iconMap = L.icon({
     iconSize : [35, 35]
 })
 
-const marker = L.marker([15.525158, -90.32959],{
-    iconMap
-}).addTo(markerLayer)
+// const marker = L.marker([15.525158, -90.32959],{
+//     iconMap
+// }).addTo(markerLayer)
 
-var tooltip = L.tooltip()
-    .setLatLng([15.525158, -90.32959])
-    .setContent('Hello world!<br />This is a nice tooltip.')
-    .addTo(map);
+// var tooltip = L.tooltip()
+//     .setLatLng([15.525158, -90.32959])
+//     .setContent('Hello world!<br />This is a nice tooltip.')
+//     .addTo(map);
 
-    var popup = L.popup()
-    .setLatLng([15.525158, -90.32959])
-    .setContent('<p>Hello world!<br />This is a nice popup.</p>')
+//     var popup = L.popup()
+//     .setLatLng([15.525158, -90.32959])
+//     .setContent('<p>Hello world!<br />This is a nice popup.</p>')
 
-    marker.bindPopup(popup)
+//     marker.bindPopup(popup)
 
     const coordenadas = [
         // [14.1, -90.5],
@@ -44,7 +44,7 @@ var tooltip = L.tooltip()
 
 //  var polygon = L.polygon(coordenadas, {color: 'red'}).addTo(map);
 // L.circle([14.6, -90.9], {radius: 5000}).addTo(map);
-// markerLayer.addTo(map)
+markerLayer.addTo(map)
 
 
 const buscarAPI = async () => {
@@ -66,6 +66,7 @@ const buscarAPI = async () => {
 
                 if (!isNaN(latitud) && !isNaN(longitud)) {
                     const NuevoMarcador = L.marker([latitud, longitud], {
+                        icon:iconMap,
                         draggable: true
                     });
                     const popup = L.popup()
@@ -78,15 +79,12 @@ const buscarAPI = async () => {
                     NuevoMarcador.bindPopup(popup);
                     NuevoMarcador.addTo(markerLayer);
                     
-                    coordenadas.push([latitud, longitud])
-                    // const polygonT=L.polygon([latitud, longitud]).addTo(map);
-                    // L.polygon([latitud, longitud], {color: 'red'}).addTo(map);
                 }
             })
         
 
         } 
-        L.polygon(coordenadas, {color: 'red'}).addTo(map);
+        
 
     } catch (error) {
         console.error('Error al cargar los datos desde la base de datos:', error);
